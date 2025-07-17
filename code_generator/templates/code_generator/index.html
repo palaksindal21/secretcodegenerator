@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret code generator</title>
+    <link rel="stylesheet" href="{% static 'code_generator/style.css' %}">
+</head>
+<body>
+  <center>
+    <div class="form-container">
+    <h2>Secret Code Generator</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+      <label for="inputText">Enter Text:</label><br><br>
+      <input type="text" id="inputText" name="plain_text" required><br><br>
+      <label for="method">Select Code Method:</label>
+      <select id="method" name="method" required>
+        <option value="encode" name="encode">Encode</option>
+        <option value="decode" name="decode">Decode</option>
+      </select><br><br>
+
+      <label for="key">Enter Key:</label>
+      <input type="number" id="key" name="shift_key" min="1" max="25" placeholder="e.g. 3">
+
+      <button type="submit">Generate Secret Code</button>
+    </form>
+  </div>
+
+  
+
+  {% if result %}
+    <h1>{{result}}</h1>
+  {% endif %}
+
+  </center>
+</body>
+</html>
